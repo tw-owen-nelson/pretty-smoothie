@@ -1,10 +1,17 @@
 dist: trusty
 language: java
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
 deploy:
   provider: heroku
   api_key:
     secure: cD3Pp8lzSGBODsLr8yM067FSU6GrUvLcJ3dZS2t/pGK9ljQDf2ycKMX/sdbWjfJU0/0Ik3TTNT7UBZLENNRtNiKzACoPlVXf9uXF2Y55OcAR+AhYqMWmbExHc/M/lyOn6MSDOQ5vao6iMXp5t16q4VCaoQ4c1BO0lcH4ETwlQXf0qSbAGsEZaNujJOsPL6KhfPlqL6qKAsfmKL840wJZy7cVLhPfeL0zTLqraKG7ruSD0HlwbzZ8mbtS+yLrQGXrlc49Ojd56TAD4tSQcuhzDtmLkLY9ezt9ARwSlD/72WJjoEdfz3vQN8nmSd6+85KP6cWOdkxYHZcvsCbQqT7wfCSZr/7GJo/Su+ppH1LA0QNzpTmlLlhR4DPxp6qoIkEQq1349o5vlbEyXjdpSLbJYt/2U6IiFWf6pdOFmUVTSEqTeH5gRk59ls9fF2hmmeF6rW4DjsEWvJp5yy+YIluNG5VDln7ARPZYgp1vB1MgLjZl4IlH57QYPJHkKWTc8kvVBa5LAfG8JSpOhbPbF1Czrcjd7uklJ5i7DSV0if/iMwTvwIyClIzEt4MMTJAMchG9p3qzwwD2qhrJoDQyJ4UV/WfMxQ7PDDO3Moieh4TftFkn5FWINgLyr5KTDBLJ+Ckc6huAryh7Qs9P9oO9lzHSxiECgB2mfHgC0dvonz8NYBk=
-  app: pretty-smoothie
+  app: pretty-smoothie-ci
   on:
     repo: tw-owen-nelson/pretty-smoothie
   strategy: git
