@@ -31,3 +31,6 @@ test {
 bootRun.dependsOn ':frontend:bundle'
 
 assemble.dependsOn ':frontend:bundle'
+
+task stage(dependsOn: ['build', ':frontend:bundle'])
+build.mustRunAfter ':frontend:bundle'
