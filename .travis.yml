@@ -16,3 +16,4 @@ deploy:
   on:
     repo: tw-owen-nelson/pretty-smoothie
   strategy: git
+  skip_cleanup: true
