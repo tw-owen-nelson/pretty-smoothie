@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.2.3.BUILD-SNAPSHOT'
 	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 	id 'java'
+	id "com.github.node-gradle.node" version "2.2.0"
 }
 
 group = 'com.team68'
@@ -26,3 +27,10 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
+
+bootRun.dependsOn ':frontend:bundle'
+
+assemble.dependsOn ':frontend:bundle'
+
+task stage(dependsOn: ['build', ':frontend:bundle'])
+build.mustRunAfter ':frontend:bundle'

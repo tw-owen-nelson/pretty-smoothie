@@ -1,5 +1,5 @@
 plugins {
-    id "com.github.node-gradle.node" version "2.2.0"
+    id "com.github.node-gradle.node"
 }
 
 task bundle(type: NpmTask) {
@@ -9,7 +9,7 @@ task bundle(type: NpmTask) {
     inputs.file('package.json')
     inputs.file('package-lock.json')
 
-    outputs.dir('build')
+    outputs.dir('../src/main/resources/static')
 
     dependsOn npmInstall
     args = ['run', 'build']
