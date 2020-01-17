@@ -7,6 +7,7 @@ cache:
   directories:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
+before_deploy: ./gradlew
 deploy:
   provider: heroku
   api_key:
@@ -15,3 +16,5 @@ deploy:
   on:
     repo: tw-owen-nelson/pretty-smoothie
   strategy: git
+  file: build/libs/PrettySmoothie-0.0.1-SNAPSHOT.jar
+  skip_cleanup: true
