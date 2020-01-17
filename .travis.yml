@@ -15,4 +15,4 @@ deploy:
   app: pretty-smoothie-ci
   on:
     repo: tw-owen-nelson/pretty-smoothie
-  skip_cleanup: false
+  skip_cleanup: true
