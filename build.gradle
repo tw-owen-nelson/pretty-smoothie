@@ -30,7 +30,10 @@ test {
 
 bootRun.dependsOn ':frontend:bundle'
 
-assemble.dependsOn ':frontend:bundle'
+compileJava.dependsOn ':frontend:bundle'
 
-task stage(dependsOn: ['build', ':frontend:bundle'])
-build.mustRunAfter ':frontend:bundle'
+tasks.register("stage") {
+	doLast {
+		println 'Starting app'
+	}
+}
