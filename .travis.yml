@@ -1,3 +1,4 @@
+os: linux
 dist: trusty
 language: java
 before_cache:
@@ -16,5 +17,3 @@ deploy:
   on:
     repo: tw-owen-nelson/pretty-smoothie
   strategy: git
-  file: build/libs/PrettySmoothie-0.0.1-SNAPSHOT.jar
-  skip_cleanup: true
