@@ -31,5 +31,13 @@ out/
 ### VS Code ###
 .vscode/
 
-### Other
+### Other ###
 .DS_Store
+
+### Frontend ###
+frontend/node_modules
+frontend/.pnp
+.pnp.js
+frontend/coverage
+npm-debug.log*
+src/main/resources/static/*
