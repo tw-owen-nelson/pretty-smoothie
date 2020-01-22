@@ -1,12 +1,15 @@
 import React from 'react';
-import strawberry from './strawberry.png';
+import strawberry from '../strawberry.png';
+import '../App.css';
+
 
 
 const Cute = () => {
     return ( 
-      <div>
+
+      <div className="App-header">
         <img src={strawberry} className="App-logo" alt="logo" />
-        <div className="App-intro">
+        <div className="pp-intro">
           <h2 className="mt-5">
             Hello smoothie lover!
           </h2>

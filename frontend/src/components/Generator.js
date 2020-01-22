@@ -3,7 +3,8 @@ import React from 'react';
 class Generator extends React.Component {
     render() {
         return (
-            <div>Generator!!!!
+            <div>
+                <h2>Generator!!!!</h2>
             </div>
         );
     }
