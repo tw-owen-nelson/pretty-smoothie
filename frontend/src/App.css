@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  background: #f9faf7;
+  min-height: 100vh;
+  min-width: 100vw;
 }
 
 .App-logo {
@@ -35,4 +38,66 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.side-by-side {
+  display: flex;
+  justify-content: center;
+  padding: 2% 8%
+}
+
+.side-by-side>div {
+  text-align: left;
+  flex: 1;
+}
+
+h2 {
+  font-family: Roboto;
+  font-size: 34px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.49px;
+  color: #df1f1d;
+}
+
+p {
+  font-family: Roboto;
+  font-size: 17px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.24px;
+  color: #8c8c8c;
+}
+
+.doodle {
+  display: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .doodle {
+    display: inline;
+  }
+}
+
+.smoothie-button {
+  border-radius: 5px;
+  background-color: #df1f1d;
+  font-family: Roboto;
+  font-size: 19px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.27px;
+  text-align: center;
+  color: #f9faf7;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }
