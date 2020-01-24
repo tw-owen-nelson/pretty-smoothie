@@ -6,7 +6,6 @@ import '../App.css';
 
 const Cute = () => {
     return ( 
-
       <div className="App-header">
         <img src={strawberry} className="App-logo" alt="logo" />
         <div className="pp-intro">
