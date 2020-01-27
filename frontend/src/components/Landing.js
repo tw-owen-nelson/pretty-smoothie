@@ -1,5 +1,5 @@
 import React from 'react';
-import strawberry from '../images/strawberry.png';
+import strawberry from '../images/landingStrawberry.png';
 import '../App.css';
 
 const Cute = () => {

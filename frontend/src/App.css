@@ -51,26 +51,18 @@
   flex: 1;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 h2 {
-  font-family: Roboto;
-  font-size: 34px;
-  font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: 0.49px;
   color: #df1f1d;
 }
 
 p {
-  font-family: Roboto;
-  font-size: 17px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: 0.24px;
   color: #8c8c8c;
+  white-space: pre;
 }
 
 .doodle {
@@ -97,7 +89,21 @@ p {
   color: #f9faf7;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
+.smoothie-button:disabled {
+  background-color: rgba(166, 148, 148, 0.5);
+}
+
+.selected-border {
+  position: absolute;
+  z-index: 2;
+}
+
+.hover-overlay {
+  position: absolute;
+  z-index: 1;
+  opacity: 0;
+}
+
+.selected-border:hover~.hover-overlay, .hover-overlay:hover {
+  opacity: 1;
 }
