@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography, GridList, GridListTile } from '@material-ui/core';
-import predictorImage from '../images/predictorImage.svg'
 import FruitFactory from './FruitFactory'
+import predictorImage from '../images/predictorImage.svg'
 import selectedBorder from '../images/selected.svg'
 import hover from '../images/hover.svg'
 
