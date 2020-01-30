@@ -9,6 +9,7 @@ class Predictor extends React.Component {
     super(props);
     this.state = {
       ingredientSelected: false,
+      selectedFruit: null,
       fruits: []
     };
   }
@@ -19,8 +20,16 @@ class Predictor extends React.Component {
       .then(data => this.setState({ fruits: data }));
   }
 
+  onIconClick = ((index) => {
+    this.setState({
+      ingredientSelected: true,
+      selectedFruit: index
+    });
+  });
+
   render() {
     const fruits = this.state.fruits;
+    const selectedFruit = this.state.selectedFruit;
     const ingredientIsSelected = this.state.ingredientSelected;
     const message = ingredientIsSelected ? 'Wow! That\'s one pretty smoothie!' : 'Hey there!';
     const instructions = ingredientIsSelected ? '' : 'Tell us about your smoothie...\nWe\'ll show you what it\'ll look like.';
@@ -29,7 +38,7 @@ class Predictor extends React.Component {
         <div className='text-content'>
           <Typography variant='h2'>{message}</Typography>
           <Typography>{instructions}</Typography>
-          <IngredientSelector fruits={fruits} />
+          <IngredientSelector fruits={fruits} onClick={this.onIconClick} selectedFruit={selectedFruit} />
           <button className='smoothie-button' disabled={!ingredientIsSelected}>SHOW ME MY SMOOTHIE</button>
         </div>
         <div className='doodle'>
@@ -47,7 +56,7 @@ function IngredientSelector(props) {
   const tiles = props.fruits.map((fruit, index) => {
     return (
       <GridListTile style={styles} key={index}>
-        <IngredientButton name={fruit.name} imageURL={fruit.imageURL} />
+        <IngredientButton fruit={fruit} onClick={() => props.onClick(index)} isSelected={index === props.selectedFruit} />
       </GridListTile>
     );
   });
@@ -59,13 +68,15 @@ function IngredientSelector(props) {
 }
 
 function IngredientButton(props) {
+  const name = props.fruit.name;
+  const imageURL = props.fruit.imageURL;
   const isSelected = props.isSelected;
   const Border = isSelected ? <img src={selectedBorder} className='selected-border' alt='selected'/> : <></>;
   return (
     <span>
       {Border}
-      <img src={hover} className='hover-overlay' alt='hover'/>
-      <img src={props.imageURL} alt={props.name + ' icon'} />
+      <img src={hover} className='hover-overlay' alt='hover' onClick={props.onClick} />
+      <img src={imageURL} alt={name + ' icon'} onClick={props.onClick} />
     </span>
   );
 }

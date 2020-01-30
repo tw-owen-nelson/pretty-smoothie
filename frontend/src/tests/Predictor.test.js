@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, waitForElement } from '@testing-library/react';
+import { render, waitForElement, fireEvent } from '@testing-library/react';
 import Predictor from '../components/Predictor';
 
 const mockData = [{"name":"banana","imageURL":"/media/banana.png"}];
@@ -24,8 +24,8 @@ describe('when predictor renders,', () => {
 
   it('fetches the fruit icons from the backend', async () => {
     const { getByAltText } = render(<Predictor />);
-    const fruitButton = await waitForElement(() => getByAltText('banana icon'));
-    expect(fruitButton).toHaveAttribute('src', '/media/banana.png');
+    const fruitIcon = await waitForElement(() => getByAltText('banana icon'));
+    expect(fruitIcon).toHaveAttribute('src', '/media/banana.png');
   });
 
   it('has no selected ingredients', () => {
@@ -39,4 +39,18 @@ describe('when predictor renders,', () => {
     const smoothieButton = getByText('SHOW ME MY SMOOTHIE');
     expect(smoothieButton).toBeDisabled();
   });
+});
+
+describe('when you click on a fruit icon', () => {
+  it('selected border appears and smoothie button is enabled', async () => {
+    const { getByAltText, getByText } = render(<Predictor />);
+    const fruitIcon = await waitForElement(() => getByAltText('banana icon'));
+    fireEvent.click(fruitIcon);
+    const selectedBorder = await waitForElement(() => getByAltText('selected'));
+    expect(selectedBorder).toBeInTheDocument();
+    const smoothieButton = getByText("SHOW ME MY SMOOTHIE");
+    expect(smoothieButton).toBeEnabled();
+  });
+
+
 });
