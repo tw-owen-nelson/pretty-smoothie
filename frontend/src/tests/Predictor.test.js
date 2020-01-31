@@ -46,8 +46,8 @@ describe('when predictor renders,', () => {
   });
 
   it('smoothie image is not present', () => {
-    const { queryAllByAltText } = render(<Predictor />);
-    const smoothie = queryAllByAltText('pretty smoothie');
+    const { queryAllByTitle } = render(<Predictor />);
+    const smoothie = queryAllByTitle('smoothie');
     expect(smoothie.length).toBe(0);
   });
 });
@@ -88,12 +88,12 @@ describe('when you click on a fruit icon', () => {
 
 describe('if you click the smoothie button when it is enabled', () => {
   it('presents a smoothie', async () => {
-    const { getByAltText, getByText } = render(<Predictor />);
+    const { getByAltText, getByText, getByTitle } = render(<Predictor />);
     const fruitIcon = await waitForElement(() => getByAltText('banana icon'));
     fireEvent.click(fruitIcon);
     const smoothieButton = getByText('SHOW ME MY SMOOTHIE');
     fireEvent.click(smoothieButton);
-    const smoothie = await waitForElement(() => getByAltText('pretty smoothie'));
+    const smoothie = await waitForElement(() => getByTitle('smoothie'));
     expect(smoothie).toBeInTheDocument();
   });
 

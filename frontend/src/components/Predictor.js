@@ -3,9 +3,7 @@ import { Typography, GridList, GridListTile, Button } from '@material-ui/core';
 import predictorImage from '../images/predictorImage.svg';
 import selectedBorder from '../images/selected.svg';
 import hover from '../images/hover.svg';
-import cup from '../images/cup.svg';
-import smoothie from '../images/smoothie.svg';
-import shading from '../images/shading.svg';
+import Smoothie from './SmoothieFactory.js'
 
 class Predictor extends React.Component {
   constructor(props) {
@@ -72,7 +70,7 @@ class Predictor extends React.Component {
     const content = this.state.smoothieIsShown ? (
       <>
         <Messages smoothieIsShown={true} />
-        <Smoothie />
+        <Smoothie color='#A1E899' />
         <Button style={buttonStyle} onClick={this.resetPredictor}>TRY IT AGAIN</Button>
       </>
     ) : (
@@ -95,16 +93,6 @@ class Predictor extends React.Component {
       </div>
     );
   }
-}
-
-function Smoothie(props) {
-  return (
-    <div className={'smoothie-image'}>
-      <img src={smoothie} className={'smoothie-base'} alt='pretty smoothie'/>
-      <img src={shading} className={'smoothie-shading'} />
-      <img src={cup} />
-    </div>
-  );
 }
 
 function Messages(props) {

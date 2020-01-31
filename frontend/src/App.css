@@ -92,20 +92,25 @@ p {
 
 .smoothie-shading {
   position: absolute;
-  z-index: 2;
+  z-index: 3;
   left: 17px;
   bottom: 7px;
 }
 
 .smoothie-base {
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   left: 13px;
   bottom: 7px;
 }
 
 .smoothie-image {
   position: relative;
+}
+
+.cup-top {
+  position: absolute;
+  z-index: 1;
 }
 
 .MuiTypography-caption {
