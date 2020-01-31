@@ -80,11 +80,11 @@ function IngredientButton(props) {
   const isSelected = props.isSelected;
   const border = isSelected ? <img src={selectedBorder} className='selected-border' alt='selected' onClick={props.onClick} /> : <></>;
   return (
-    <span>
+    <>
       {border}
       <img src={hover} className='hover-overlay' alt='hover' onClick={props.onClick} />
       <img src={imageURL} alt={name + ' icon'} onClick={props.onClick} />
-    </span>
+    </>
   );
 }
 
