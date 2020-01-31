@@ -107,3 +107,21 @@ p {
 .selected-border:hover~.hover-overlay, .hover-overlay:hover {
   opacity: 1;
 }
+
+.smoothie-shading {
+  position: absolute;
+  z-index: 2;
+  left: 17px;
+  bottom: 7px;
+}
+
+.smoothie-base {
+  position: absolute;
+  z-index: 1;
+  left: 13px;
+  bottom: 7px;
+}
+
+.smoothie-image {
+  position: relative;
+}

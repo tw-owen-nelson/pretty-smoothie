@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, waitForElement, fireEvent } from '@testing-library/react';
+import { render, wait, waitForElement, fireEvent } from '@testing-library/react';
 import Predictor from '../components/Predictor';
 
 const mockData = [
@@ -42,6 +42,12 @@ describe('when predictor renders,', () => {
     const smoothieButton = getByText('SHOW ME MY SMOOTHIE');
     expect(smoothieButton).toBeDisabled();
   });
+
+  it('smoothie image is not present', () => {
+    const { queryAllByAltText } = render(<Predictor />);
+    const smoothie = queryAllByAltText('pretty smoothie');
+    expect(smoothie.length).toBe(0);
+  })
 });
 
 describe('when you click on a fruit icon', () => {
@@ -75,5 +81,62 @@ describe('when you click on a fruit icon', () => {
     const selectedBorder = await waitForElement(() => getByAltText('selected'));
     fireEvent.click(fruitIcon);
    expect(selectedBorder).not.toBeInTheDocument();
+  });
+});
+
+describe('if you click the smoothie button when it is enabled', () => {
+  it('presents a smoothie', async () => {
+    const { getByAltText, getByText } = render(<Predictor />);
+    const fruitIcon = await waitForElement(() => getByAltText('banana icon'));
+    fireEvent.click(fruitIcon);
+    const smoothieButton = getByText('SHOW ME MY SMOOTHIE');
+    fireEvent.click(smoothieButton);
+    const smoothie = await waitForElement(() => getByAltText('pretty smoothie'));
+    expect(smoothie).toBeInTheDocument();
+  });
+
+  it('hides the selector buttons', async () => {
+    const { getByAltText, getByText } = render(<Predictor />);
+    const fruitIcon = await waitForElement(() => getByAltText('banana icon'));
+    fireEvent.click(fruitIcon);
+    const smoothieButton = getByText("SHOW ME MY SMOOTHIE");
+    fireEvent.click(smoothieButton);
+    expect(fruitIcon).not.toBeInTheDocument();
+  });
+
+  it('changes the messages', async () => {
+    const { getByText, getByAltText } = render(<Predictor />);
+    const fruitIcon = await waitForElement(() => getByAltText('banana icon'));
+    fireEvent.click(fruitIcon);
+    const smoothieButton = getByText('SHOW ME MY SMOOTHIE')
+    fireEvent.click(smoothieButton);
+    const newMessage = await waitForElement(() => getByText('Wow!', { exact: false }));
+    expect(newMessage).toBeInTheDocument();
+  });
+});
+
+describe('when a smoothie is shown', () => {
+  it('presents a try again button', async () => {
+    const { getByText, getByAltText } = render(<Predictor />);
+    const fruitIcon = await waitForElement(() => getByAltText('banana icon'));
+    fireEvent.click(fruitIcon);
+    const smoothieButton = getByText('SHOW ME MY SMOOTHIE')
+    fireEvent.click(smoothieButton);
+    const tryAgainButton = await waitForElement(() => getByText('TRY IT AGAIN'));
+    expect(tryAgainButton).toBeInTheDocument();
+  });
+
+  it('pressing try it again button resets the predictor to no ingredient selected', async () => {
+    const { getByText, getByAltText, queryAllByAltText } = render(<Predictor />);
+    let fruitIcon = await waitForElement(() => getByAltText('banana icon'));
+    fireEvent.click(fruitIcon);
+    const smoothieButton = getByText('SHOW ME MY SMOOTHIE')
+    fireEvent.click(smoothieButton);
+    const tryAgainButton = await waitForElement(() => getByText('TRY IT AGAIN'));
+    fireEvent.click(tryAgainButton);
+    fruitIcon = await waitForElement(() => getByAltText('banana icon'));
+    expect(fruitIcon).toBeInTheDocument();
+    const selectedBorders = queryAllByAltText('selected');
+    expect(selectedBorders.length).toBe(0);
   });
 });
