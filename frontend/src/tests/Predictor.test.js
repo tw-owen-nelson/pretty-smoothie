@@ -2,7 +2,10 @@ import React from 'react';
 import { render, waitForElement, fireEvent } from '@testing-library/react';
 import Predictor from '../components/Predictor';
 
-const mockData = [{"name":"banana","imageURL":"/media/banana.png"}];
+const mockData = [
+  {"name":"banana","imageURL":"/media/banana.png"},
+  {"name":"blueberry","imageURL":"/media/blueberry.png"}
+];
 const mockResponsePromise = Promise.resolve(mockData);
 const mockFetchPromise = Promise.resolve({
   json: () => mockResponsePromise
@@ -52,5 +55,25 @@ describe('when you click on a fruit icon', () => {
     expect(smoothieButton).toBeEnabled();
   });
 
+  it('selected border moves to next fruit icon clicked and button remains enabled', async () => {
+    const { getByAltText, getByText } = render(<Predictor />);
+    const fruitIcon1 = await waitForElement(() => getByAltText('banana icon'));
+    const fruitIcon2 = await waitForElement(() => getByAltText('blueberry icon'));
+    fireEvent.click(fruitIcon1);
+    fireEvent.click(fruitIcon2);
+    const selectedBorder = await waitForElement(() => getByAltText('selected'));
+    expect(selectedBorder.parentNode).toContainElement(fruitIcon2);
+    expect(selectedBorder.parentNode).not.toContainElement(fruitIcon1);
+    const smoothieButton = getByText("SHOW ME MY SMOOTHIE");
+    expect(smoothieButton).toBeEnabled();
+  });
 
+  it('clicking the same fruit button removes selected border and disables button', async () => {
+    const { getByAltText, getByText } = render(<Predictor />);
+    const fruitIcon = await waitForElement(() => getByAltText('banana icon'));
+    fireEvent.click(fruitIcon);
+    const selectedBorder = await waitForElement(() => getByAltText('selected'));
+    fireEvent.click(fruitIcon);
+   expect(selectedBorder).not.toBeInTheDocument();
+  });
 });

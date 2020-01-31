@@ -21,18 +21,25 @@ class Predictor extends React.Component {
   }
 
   onIconClick = ((index) => {
-    this.setState({
-      ingredientSelected: true,
-      selectedFruit: index
-    });
+    if (index === this.state.selectedFruit) {
+      this.setState({
+        ingredientSelected: false,
+        selectedFruit: null
+      });
+    } else {
+      this.setState({
+        ingredientSelected: true,
+        selectedFruit: index
+      });
+    }
   });
 
   render() {
     const fruits = this.state.fruits;
     const selectedFruit = this.state.selectedFruit;
     const ingredientIsSelected = this.state.ingredientSelected;
-    const message = ingredientIsSelected ? 'Wow! That\'s one pretty smoothie!' : 'Hey there!';
-    const instructions = ingredientIsSelected ? '' : 'Tell us about your smoothie...\nWe\'ll show you what it\'ll look like.';
+    const message = false ? 'Wow! That\'s one pretty smoothie!' : 'Hey there!';
+    const instructions = false ? '' : 'Tell us about your smoothie...\nWe\'ll show you what it\'ll look like.';
     return (
       <div className='side-by-side'>
         <div className='text-content'>
@@ -71,10 +78,10 @@ function IngredientButton(props) {
   const name = props.fruit.name;
   const imageURL = props.fruit.imageURL;
   const isSelected = props.isSelected;
-  const Border = isSelected ? <img src={selectedBorder} className='selected-border' alt='selected'/> : <></>;
+  const border = isSelected ? <img src={selectedBorder} className='selected-border' alt='selected' onClick={props.onClick} /> : <></>;
   return (
     <span>
-      {Border}
+      {border}
       <img src={hover} className='hover-overlay' alt='hover' onClick={props.onClick} />
       <img src={imageURL} alt={name + ' icon'} onClick={props.onClick} />
     </span>

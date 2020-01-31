@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfiguration implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/{spring:(?!(media)|(api))\\w+}")
+        registry.addViewController("/{spring:(?!media|api)\\w+}")
                 .setViewName("forward:/");
     }
 
