@@ -75,24 +75,6 @@ p {
   }
 }
 
-.smoothie-button {
-  border-radius: 5px;
-  background-color: #df1f1d;
-  font-family: Roboto;
-  font-size: 19px;
-  font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: 0.27px;
-  text-align: center;
-  color: #f9faf7;
-}
-
-.smoothie-button:disabled {
-  background-color: rgba(166, 148, 148, 0.5);
-}
-
 .selected-border {
   position: absolute;
   z-index: 2;
@@ -124,4 +106,9 @@ p {
 
 .smoothie-image {
   position: relative;
+}
+
+.MuiTypography-caption {
+  color: #df1f1d;
+  display: block;
 }

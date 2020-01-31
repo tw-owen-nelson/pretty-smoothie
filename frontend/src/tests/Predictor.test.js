@@ -37,17 +37,19 @@ describe('when predictor renders,', () => {
     expect(selectedBorders.length).toBe(0);
   });
 
-  it('disables the generate smoothie button', () => {
+  it('clicking the smoothie button produces an error message', async () => {
     const { getByText } = render(<Predictor />);
     const smoothieButton = getByText('SHOW ME MY SMOOTHIE');
-    expect(smoothieButton).toBeDisabled();
+    fireEvent.click(smoothieButton);
+    const errorMessage = await waitForElement(() => getByText('Please select your ingredient!'));
+    expect(errorMessage).toBeInTheDocument();
   });
 
   it('smoothie image is not present', () => {
     const { queryAllByAltText } = render(<Predictor />);
     const smoothie = queryAllByAltText('pretty smoothie');
     expect(smoothie.length).toBe(0);
-  })
+  });
 });
 
 describe('when you click on a fruit icon', () => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, GridList, GridListTile } from '@material-ui/core';
+import { Typography, GridList, GridListTile, Button } from '@material-ui/core';
 import predictorImage from '../images/predictorImage.svg';
 import selectedBorder from '../images/selected.svg';
 import hover from '../images/hover.svg';
@@ -13,6 +13,7 @@ class Predictor extends React.Component {
     this.state = {
       ingredientSelected: false,
       selectedFruit: null,
+      errorIsShown: false,
       smoothieIsShown: false,
       fruits: []
     };
@@ -36,17 +37,22 @@ class Predictor extends React.Component {
         selectedFruit: index
       });
     }
+    this.setState({ errorIsShown: false });
   });
 
   generateSmoothie = () => {
     this.setState({ smoothieIsShown: true });
   }
 
+  showError = () => {
+    this.setState({ errorIsShown: true });
+  }
+
   resetPredictor = () => {
     this.setState({
       ingredientSelected: false,
       selectedFruit: null,
-      smoothieIsShown: false,
+      smoothieIsShown: false
     })
   }
 
@@ -54,19 +60,30 @@ class Predictor extends React.Component {
     const fruits = this.state.fruits;
     const selectedFruit = this.state.selectedFruit;
     const ingredientIsSelected = this.state.ingredientSelected;
+    const errorMessage = this.state.errorIsShown ? 'Please select your ingredient!' : '';
+    const buttonStyle = ingredientIsSelected ? {
+      'backgroundColor': '#df1f1d',
+      'color': '#f9faf7'
+    } : {
+      'backgroundColor': 'rgba(166, 148, 148, 0.5)',
+      'color': '#f9faf7'
+    }
+    const smoothieButtonFunction = ingredientIsSelected ? this.generateSmoothie : this.showError;
     const content = this.state.smoothieIsShown ? (
       <>
         <Messages smoothieIsShown={true} />
         <Smoothie />
-        <button className={'smoothie-button'} onClick={this.resetPredictor}>TRY IT AGAIN</button>
+        <Button style={buttonStyle} onClick={this.resetPredictor}>TRY IT AGAIN</Button>
       </>
-      ) : (
+    ) : (
       <>
         <Messages smoothieIsShown={false} />
         <IngredientSelector fruits={fruits} onClick={this.onIconClick} selectedFruit={selectedFruit} />
-        <button className={'smoothie-button'} disabled={!ingredientIsSelected} onClick={this.generateSmoothie}>SHOW ME MY SMOOTHIE</button>
+        <Button style={buttonStyle} onClick={smoothieButtonFunction}>SHOW ME MY SMOOTHIE</Button>
+        <Typography variant='caption'>{errorMessage}</Typography>
       </>
-      );
+    );
+
     return (
       <div className='side-by-side'>
         <div className='text-content'>
