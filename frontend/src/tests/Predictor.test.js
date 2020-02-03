@@ -3,8 +3,8 @@ import { render, wait, waitForElement, fireEvent } from '@testing-library/react'
 import Predictor from '../components/Predictor';
 
 const mockData = [
-  {"name":"banana","imageURL":"/media/banana.png"},
-  {"name":"blueberry","imageURL":"/media/blueberry.png"}
+  {"name":"banana","imageURL":"/media/banana.png","color":"#FDE8AE"},
+  {"name":"blueberry","imageURL":"/media/blueberry.png","color":"#291420"}
 ];
 const mockResponsePromise = Promise.resolve(mockData);
 const mockFetchPromise = Promise.resolve({
@@ -82,7 +82,7 @@ describe('when you click on a fruit icon', () => {
     fireEvent.click(fruitIcon);
     const selectedBorder = await waitForElement(() => getByAltText('selected'));
     fireEvent.click(fruitIcon);
-   expect(selectedBorder).not.toBeInTheDocument();
+    expect(selectedBorder).not.toBeInTheDocument();
   });
 });
 
@@ -96,6 +96,16 @@ describe('if you click the smoothie button when it is enabled', () => {
     const smoothie = await waitForElement(() => getByTitle('smoothie'));
     expect(smoothie).toBeInTheDocument();
   });
+
+  it('the smoothie is the correct color', async () => {
+    const { getByAltText, getByText, getByTitle } = render(<Predictor />);
+    const fruitIcon = await waitForElement(() => getByAltText('banana icon'));
+    fireEvent.click(fruitIcon);
+    const smoothieButton = getByText('SHOW ME MY SMOOTHIE');
+    fireEvent.click(smoothieButton);
+    const smoothie = await waitForElement(() => getByTitle('smoothie').nextSibling);
+    expect(smoothie).toHaveAttribute('fill', '#FDE8AE');
+  })
 
   it('hides the selector buttons', async () => {
     const { getByAltText, getByText } = render(<Predictor />);

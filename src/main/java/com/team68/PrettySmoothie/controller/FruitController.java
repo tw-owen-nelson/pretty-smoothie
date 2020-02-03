@@ -14,9 +14,9 @@ public class FruitController {
     @GetMapping("/fruits")
     Collection<Fruit> getFruits() {
         Collection<Fruit> fruits = new ArrayList<>();
-        fruits.add(new Fruit("banana", "/media/banana.png"));
-        fruits.add(new Fruit("blueberry", "/media/blueberry.png"));
-        fruits.add(new Fruit("strawberry", "/media/strawberry.png"));
+        fruits.add(new Fruit("banana", "/media/banana.png", "#FDE8AE"));
+        fruits.add(new Fruit("blueberry", "/media/blueberry.png", "#291420"));
+        fruits.add(new Fruit("strawberry", "/media/strawberry.png", "#B60000"));
         return fruits;
     }
 }
