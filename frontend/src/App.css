@@ -43,7 +43,6 @@
 .side-by-side {
   display: flex;
   justify-content: space-between;
-  padding: 4% 8%
 }
 
 .text-content {
@@ -51,6 +50,25 @@
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
+  margin: 20px 16px;
+  width: 100%;
+}
+
+h4.MuiTypography-h4 {
+  color: #df1f1d;
+  font-weight: bold;
+}
+
+p.MuiTypography-body1 {
+  color: #8c8c8c;
+  white-space: pre;
+  margin-bottom: 40px;
+}
+
+.MuiTypography-caption {
+  color: #df1f1d;
+  display: block;
+  align-self: center;
 }
 
 img {
@@ -58,30 +76,9 @@ img {
   height: auto;
 }
 
-h4 {
-  color: #df1f1d;
-}
-
-p {
-  color: #8c8c8c;
-  white-space: pre;
-}
-
-p.MuiTypography-body1 {
-  margin-bottom: 40px;
-}
-
 .doodle {
   display: none;
   flex: 1;
-}
-
-@media only screen and (min-width: 768px) {
-  .doodle {
-    flex: 1;
-    padding: 5rem;
-    display: inline;
-  }
 }
 
 .selected-border {
@@ -133,14 +130,8 @@ p.MuiTypography-body1 {
   z-index: 1;
 }
 
-.MuiTypography-caption {
-  color: #df1f1d;
-  display: block;
-  align-self: center;
-}
-
 .MuiButton-root.smoothie-button {
-  width: 344px;
+  width: 100%;
   height: 48;
   background-color: #df1f1d;
   color: #f9faf7;
@@ -160,4 +151,26 @@ p.MuiTypography-body1 {
 .MuiButton-root.smoothie-button.disabled:hover {
   background-color: rgba(166, 148, 148, 0.5);
   color: #f9faf7;
+}
+
+@media only screen and (min-width: 600px) {
+  .doodle {
+    flex: 1;
+    min-width: 40%;
+    margin-left: 4rem;
+    display: inline;
+  }
+
+  .side-by-side {
+    margin: 0px 8%;
+  }
+
+  .text-content {
+    margin-top: 4%;
+    width: auto;
+  }
+
+  .MuiButton-root.smoothie-button {
+    width: 344px;
+  }
 }
