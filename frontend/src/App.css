@@ -95,8 +95,16 @@ p.MuiTypography-body1 {
   opacity: 0;
 }
 
-.selected-border:hover~.hover-overlay, .hover-overlay:hover {
-  opacity: 1;
+@media only screen and (any-hover: hover) {
+  .selected-border:hover~.hover-overlay, .hover-overlay:hover {
+    opacity: 1;
+  }
+}
+
+@media only screen and (any-hover: none) {
+  .selected-border:active~.hover-overlay, .hover_overlay:active {
+    opacity: 1;
+  }
 }
 
 .smoothie-shading {
