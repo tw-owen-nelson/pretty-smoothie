@@ -42,13 +42,15 @@
 
 .side-by-side {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   padding: 2% 8%
 }
 
-.side-by-side>div {
+.text-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   text-align: left;
-  flex: 1;
 }
 
 img {
@@ -67,10 +69,13 @@ p {
 
 .doodle {
   display: none;
+  flex: 1;
 }
 
 @media only screen and (min-width: 768px) {
   .doodle {
+    flex: 1;
+    padding: 5rem;
     display: inline;
   }
 }
@@ -116,4 +121,27 @@ p {
 .MuiTypography-caption {
   color: #df1f1d;
   display: block;
+  align-self: center;
+}
+
+.MuiButton-root.smoothie-button {
+  width: 344px;
+  height: 48;
+  background-color: #df1f1d;
+  color: #f9faf7;
+}
+
+.MuiButton-root.smoothie-button:hover {
+  background-color: #df1f1d;
+  color: #f9faf7;
+}
+
+.MuiButton-root.smoothie-button.disabled {
+  background-color: rgba(166, 148, 148, 0.5);
+  color: #f9faf7;
+}
+
+.MuiButton-root.smoothie-button.disabled:hover {
+  background-color: rgba(166, 148, 148, 0.5);
+  color: #f9faf7;
 }

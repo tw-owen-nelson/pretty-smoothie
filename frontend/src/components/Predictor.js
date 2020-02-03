@@ -51,37 +51,30 @@ class Predictor extends React.Component {
       ingredientSelected: false,
       selectedFruit: null,
       smoothieIsShown: false
-    })
+    });
   }
 
   render() {
     const fruits = this.state.fruits;
     const selectedFruit = this.state.selectedFruit;
     const ingredientIsSelected = this.state.ingredientSelected;
+    const buttonClass = 'smoothie-button' + (ingredientIsSelected ? '' : ' disabled');
     const errorMessage = this.state.errorIsShown ? 'Please select your ingredient!' : '';
-    const buttonStyle = ingredientIsSelected ? {
-      'backgroundColor': '#df1f1d',
-      'color': '#f9faf7'
-    } : {
-      'backgroundColor': 'rgba(166, 148, 148, 0.5)',
-      'color': '#f9faf7'
-    }
     const smoothieButtonFunction = ingredientIsSelected ? this.generateSmoothie : this.showError;
     const content = this.state.smoothieIsShown ? (
       <>
         <Messages smoothieIsShown={true} />
-        <Smoothie color='#A1E899' />
-        <Button style={buttonStyle} onClick={this.resetPredictor}>TRY IT AGAIN</Button>
+        <Smoothie color={fruits[selectedFruit].color} />
+        <Button className={'smoothie-button'} onClick={this.resetPredictor}>TRY IT AGAIN</Button>
       </>
     ) : (
       <>
         <Messages smoothieIsShown={false} />
         <IngredientSelector fruits={fruits} onClick={this.onIconClick} selectedFruit={selectedFruit} />
-        <Button style={buttonStyle} onClick={smoothieButtonFunction}>SHOW ME MY SMOOTHIE</Button>
+        <Button className={buttonClass} onClick={smoothieButtonFunction}>SHOW ME MY SMOOTHIE</Button>
         <Typography variant='caption'>{errorMessage}</Typography>
       </>
     );
-
     return (
       <div className='side-by-side'>
         <div className='text-content'>
