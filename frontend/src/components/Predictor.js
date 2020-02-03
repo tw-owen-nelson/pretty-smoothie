@@ -1,6 +1,7 @@
 import React from 'react';
 import { Typography, GridList, GridListTile, Button } from '@material-ui/core';
-import predictorImage from '../images/predictorImage.svg';
+import jumpImage from '../images/jumpImage.svg';
+import swingImage from '../images/swingImage.svg'
 import selectedBorder from '../images/selected.svg';
 import hover from '../images/hover.svg';
 import Smoothie from './SmoothieFactory.js'
@@ -61,7 +62,9 @@ class Predictor extends React.Component {
     const buttonClass = 'smoothie-button' + (ingredientIsSelected ? '' : ' disabled');
     const errorMessage = this.state.errorIsShown ? 'Please select your ingredient!' : '';
     const smoothieButtonFunction = ingredientIsSelected ? this.generateSmoothie : this.showError;
-    const content = this.state.smoothieIsShown ? (
+    const smoothieIsShown = this.state.smoothieIsShown;
+
+    const content = smoothieIsShown ? (
       <>
         <Messages smoothieIsShown={true} />
         <Smoothie color={fruits[selectedFruit].color} />
@@ -81,7 +84,7 @@ class Predictor extends React.Component {
           {content}
         </div>
         <div className='doodle'>
-          <img src={predictorImage} alt='startup website doodle' />
+          <img src={smoothieIsShown ? swingImage : jumpImage} alt='startup website doodle' />
         </div>
       </div>
     );
@@ -89,11 +92,11 @@ class Predictor extends React.Component {
 }
 
 function Messages(props) {
-  const message = props.smoothieIsShown ? 'Wow! That\'s one pretty smoothie!' : 'Hey there!';
+  const message = props.smoothieIsShown ? 'Wow! That\'s one pretty smoothie.' : 'Hey there!';
   const instructions = props.smoothieIsShown ? '' : 'Tell us about your smoothie...\nWe\'ll show you what it\'ll look like.';
   return (
     <>
-      <Typography variant='h2'>{message}</Typography>
+      <Typography variant='h4'>{message}</Typography>
       <Typography>{instructions}</Typography>
     </>
   );
@@ -111,9 +114,12 @@ function IngredientSelector(props) {
     );
   });
   return (
-    <GridList cols={4} cellHeight='auto' spacing={16}>
-      {tiles}
-    </GridList>
+    <>
+      <Typography variant='h6'>What's going in?</Typography>
+      <GridList cols={4} cellHeight='auto' spacing={16}>
+        {tiles}
+      </GridList>
+    </>
   );
 }
 

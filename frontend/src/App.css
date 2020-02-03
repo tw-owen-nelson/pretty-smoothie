@@ -43,7 +43,7 @@
 .side-by-side {
   display: flex;
   justify-content: space-between;
-  padding: 2% 8%
+  padding: 4% 8%
 }
 
 .text-content {
@@ -58,13 +58,17 @@ img {
   height: auto;
 }
 
-h2 {
+h4 {
   color: #df1f1d;
 }
 
 p {
   color: #8c8c8c;
   white-space: pre;
+}
+
+p.MuiTypography-body1 {
+  margin-bottom: 40px;
 }
 
 .doodle {
@@ -111,6 +115,9 @@ p {
 
 .smoothie-image {
   position: relative;
+  left: 31px;
+  margin-top: 12px;
+  margin-bottom: 14px;
 }
 
 .cup-top {
@@ -129,6 +136,7 @@ p {
   height: 48;
   background-color: #df1f1d;
   color: #f9faf7;
+  margin-top: 40px;
 }
 
 .MuiButton-root.smoothie-button:hover {
