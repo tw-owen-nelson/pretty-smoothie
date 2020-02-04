@@ -29,9 +29,11 @@ test {
 	useJUnitPlatform()
 }
 
+test.dependsOn ':frontend:frontend_test'
+assemble.dependsOn ':frontend:frontend_test'
+assemble.dependsOn ':frontend:bundle'
 bootRun.dependsOn ':frontend:bundle'
-
-compileJava.dependsOn ':frontend:bundle'
+compileJava.shouldRunAfter ':frontend:bundle'
 
 task stage {
 	doLast {

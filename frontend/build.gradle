@@ -14,3 +14,10 @@ task bundle(type: NpmTask) {
     dependsOn npmInstall
     args = ['run', 'build']
 }
+
+task frontend_test(type: NpmTask) {
+    dependsOn npmInstall
+    args = ['test', '--', '--watchAll=false']
+}
+
+bundle.shouldRunAfter frontend_test
