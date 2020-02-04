@@ -1,9 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Tabs, Tab, Toolbar } from '@material-ui/core';
+import { AppBar, Tabs, Tab, Toolbar, makeStyles, Grid } from '@material-ui/core';
 import logo from '../images/logo-wordmark.png';
-import Grid from '@material-ui/core/Grid';
 
 
 const useStyles = makeStyles(theme => ({
@@ -13,17 +11,33 @@ const useStyles = makeStyles(theme => ({
   appbar: {
     backgroundColor: '#ffffff',
     color: '#df1f1d',
+  }, 
+  tabs: {
+    height: 'inherit',
+  },
+  logo: {
+    width: '242px',
+    height:'55px',
+    objectFit: 'contain',
   }
-  
 }));
 
-function Navbar() {
+const Navbar = () => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
+  // TabIndicatorProps={{style: {backgroundColor: "#FFFFFF"}}} 
+
   const handleChange = (event, newValue) => {
+    localStorage.setItem('value', newValue);
     setValue(newValue);
   }
+
+  useEffect(() => {
+    const localValue = localStorage.getItem('value');
+    setValue(parseInt(localValue));
+  }, [value]);
+  
 
     return (
         <div>
@@ -35,12 +49,12 @@ function Navbar() {
               alignItems="baseline"
             >
               <Grid item>
-                <Toolbar><img src={logo} alt='logo' /></Toolbar>
+                <Toolbar component={Link} to='/'><img className={classes.logo} src={logo} alt='logo' /></Toolbar>
               </Grid>
-              <Grid item>
+              <Grid item className={classes.tabs}> 
                 <Tabs justifycontent="flex-end" value={value} onChange={handleChange}>
-                  <Tab value={0} label= 'Predictor' component={Link} to='/predictor'/>
-                  <Tab value={1} label='Generator'component={Link} to='/generator'/>
+                  <Tab label= 'Predictor' component={Link} to='/predictor'/>
+                  <Tab label='Generator'component={Link} to='/generator'/>
                 </Tabs>
               </Grid>
             </ Grid>
