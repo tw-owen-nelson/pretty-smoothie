@@ -59,10 +59,11 @@ class Predictor extends React.Component {
     const fruits = this.state.fruits;
     const selectedFruit = this.state.selectedFruit;
     const ingredientIsSelected = this.state.ingredientSelected;
-    const buttonClass = 'smoothie-button' + (ingredientIsSelected ? '' : ' disabled');
-    const errorMessage = this.state.errorIsShown ? 'Please select your ingredient!' : '';
-    const smoothieButtonFunction = ingredientIsSelected ? this.generateSmoothie : this.showError;
     const smoothieIsShown = this.state.smoothieIsShown;
+
+    const smoothieButtonFunction = ingredientIsSelected ? this.generateSmoothie : this.showError;
+    const errorMessage = this.state.errorIsShown ? 'Please select your ingredient!' : '';
+    const buttonClass = 'smoothie-button' + (ingredientIsSelected ? '' : ' disabled');
 
     const content = smoothieIsShown ? (
       <>
@@ -93,7 +94,9 @@ class Predictor extends React.Component {
 
 function Messages(props) {
   const message = props.smoothieIsShown ? 'Wow! That\'s one pretty smoothie.' : 'Hey there!';
-  const instructions = props.smoothieIsShown ? '' : 'Tell us about your smoothie...\nWe\'ll show you what it\'ll look like.';
+  const instructions = props.smoothieIsShown ?
+    '' : 'Tell us about your smoothie...\nWe\'ll show you what it\'ll look like.';
+
   return (
     <>
       <Typography variant='h4'>{message}</Typography>
@@ -109,10 +112,13 @@ function IngredientSelector(props) {
   const tiles = props.fruits.map((fruit, index) => {
     return (
       <GridListTile style={styles} key={index}>
-        <IngredientButton fruit={fruit} onClick={() => props.onClick(index)} isSelected={index === props.selectedFruit} />
+        <IngredientButton fruit={fruit}
+                          onClick={() => props.onClick(index)}
+                          isSelected={index === props.selectedFruit} />
       </GridListTile>
     );
   });
+
   return (
     <>
       <Typography variant='h6'>What's going in?</Typography>
@@ -127,7 +133,9 @@ function IngredientButton(props) {
   const name = props.fruit.name;
   const imageURL = props.fruit.imageURL;
   const isSelected = props.isSelected;
-  const border = isSelected ? <img src={selectedBorder} className='selected-border' alt='selected' onClick={props.onClick} /> : <></>;
+  const border = isSelected ?
+    <img src={selectedBorder} className='selected-border' alt='selected' onClick={props.onClick} /> : <></>;
+
   return (
     <>
       {border}
