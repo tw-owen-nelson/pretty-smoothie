@@ -4,8 +4,9 @@ import Predictor from '../components/Predictor';
 
 const mockData = [
   {"name":"banana","imageURL":"/media/banana.png","color":"#FDE8AE"},
-  {"name":"blueberry","imageURL":"/media/blueberry.png","color":"#291420"}
+  {"name":"blueberry","imageURL":"/media/blueberry.png","color":"#5F3A81"}
 ];
+
 const mockResponsePromise = Promise.resolve(mockData);
 const mockFetchPromise = Promise.resolve({
   json: () => mockResponsePromise
@@ -105,7 +106,7 @@ describe('if you click the smoothie button when it is enabled', () => {
     fireEvent.click(smoothieButton);
     const smoothie = await waitForElement(() => getByTitle('smoothie').nextSibling);
     expect(smoothie).toHaveAttribute('fill', '#FDE8AE');
-  })
+  });
 
   it('hides the selector buttons', async () => {
     const { getByAltText, getByText } = render(<Predictor />);
@@ -120,7 +121,7 @@ describe('if you click the smoothie button when it is enabled', () => {
     const { getByText, getByAltText } = render(<Predictor />);
     const fruitIcon = await waitForElement(() => getByAltText('banana icon'));
     fireEvent.click(fruitIcon);
-    const smoothieButton = getByText('SHOW ME MY SMOOTHIE')
+    const smoothieButton = getByText('SHOW ME MY SMOOTHIE');
     fireEvent.click(smoothieButton);
     const newMessage = await waitForElement(() => getByText('Wow!', { exact: false }));
     expect(newMessage).toBeInTheDocument();
@@ -132,7 +133,7 @@ describe('when a smoothie is shown', () => {
     const { getByText, getByAltText } = render(<Predictor />);
     const fruitIcon = await waitForElement(() => getByAltText('banana icon'));
     fireEvent.click(fruitIcon);
-    const smoothieButton = getByText('SHOW ME MY SMOOTHIE')
+    const smoothieButton = getByText('SHOW ME MY SMOOTHIE');
     fireEvent.click(smoothieButton);
     const tryAgainButton = await waitForElement(() => getByText('TRY IT AGAIN'));
     expect(tryAgainButton).toBeInTheDocument();
@@ -142,7 +143,7 @@ describe('when a smoothie is shown', () => {
     const { getByText, getByAltText, queryAllByAltText } = render(<Predictor />);
     let fruitIcon = await waitForElement(() => getByAltText('banana icon'));
     fireEvent.click(fruitIcon);
-    const smoothieButton = getByText('SHOW ME MY SMOOTHIE')
+    const smoothieButton = getByText('SHOW ME MY SMOOTHIE');
     fireEvent.click(smoothieButton);
     const tryAgainButton = await waitForElement(() => getByText('TRY IT AGAIN'));
     fireEvent.click(tryAgainButton);
