@@ -11,8 +11,8 @@ import com.team68.PrettySmoothie.model.Fruit;
 public class FruitControllerTests {
     private FruitController fruitController = new FruitController();
     private Fruit banana = new Fruit("banana", "/media/banana.png", "#FDE8AE");
-    private Fruit blueberry = new Fruit("blueberry", "/media/blueberry.png", "#291420");
-    private Fruit strawberry = new Fruit("strawberry", "/media/strawberry.png", "#B60000");
+    private Fruit blueberry = new Fruit("blueberry", "/media/blueberry.png", "#5F3A81");
+    private Fruit strawberry = new Fruit("strawberry", "/media/strawberry.png", "#E76F77");
 
     @Test
     void shouldReturnBasicFruits() {
