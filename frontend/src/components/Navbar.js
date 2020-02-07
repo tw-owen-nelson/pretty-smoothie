@@ -1,66 +1,85 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { AppBar, Tabs, Tab, Toolbar, makeStyles, Grid } from '@material-ui/core';
+import React, { useState } from 'react';
+import { AppBar, Tab, Tabs, Toolbar, Grid } from '@material-ui/core';
 import logo from '../images/logo-wordmark.png';
+import Predictor from './Predictor.js';
+import Generator from './Generator.js';
+import Landing from './Landing.js';
 
+const shouldRender = viewToRender => {
+    if(viewToRender === 'predictor'){ 
+        return <Predictor/> 
+    }
+    else if(viewToRender === 'generator'){ 
+        return <Generator/> 
+    }
+    else { 
+        return <Landing/> 
+    }
+}
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-  },
-  appbar: {
-    backgroundColor: '#ffffff',
-    color: '#df1f1d',
-  }, 
-  tabs: {
-    height: 'inherit',
-  },
-  logo: {
-    width: '242px',
-    height:'55px',
-    objectFit: 'contain',
-  }
-}));
+function SimpleTabs(props) {
+    const { changeView, showIndicator } = props;
+    const [currentValue, setCurrentValue] = useState(2);
 
-const Navbar = () => {
-  const classes = useStyles();
-  const [value, setValue] = React.useState(0);
-
-  // TabIndicatorProps={{style: {backgroundColor: "#FFFFFF"}}} 
-
-  const handleChange = (event, newValue) => {
-    localStorage.setItem('value', newValue);
-    setValue(newValue);
-  }
-
-  useEffect(() => {
-    const localValue = localStorage.getItem('value');
-    setValue(parseInt(localValue));
-  }, [value]);
-  
+     const handleChange = (event, newValue) => {
+         setCurrentValue(newValue)
+     }
 
     return (
-        <div>
-            <AppBar position='static' className={classes.appbar}>
-            <Grid
-              container
-              direction="row"
-              justify="space-between"
-              alignItems="baseline"
-            >
-              <Grid item>
-                <Toolbar component={Link} to='/'><img className={classes.logo} src={logo} alt='logo' /></Toolbar>
-              </Grid>
-              <Grid item className={classes.tabs}> 
-                <Tabs justifycontent="flex-end" value={value} onChange={handleChange}>
-                  <Tab label= 'Predictor' component={Link} to='/predictor'/>
-                  <Tab label='Generator'component={Link} to='/generator'/>
-                </Tabs>
-              </Grid>
-            </ Grid>
-            </AppBar>
-        </div>
+        <Tabs 
+            value={currentValue}
+            onChange={handleChange} 
+            TabIndicatorProps={{style: { background: showIndicator }}}
+        >       
+            <Tab onClick={() => changeView('predictor', '#df1f1d')}
+                label={<span style={{ color: '#df1f1d' }}>Predictor</span>}></Tab>
+            <Tab onClick={() => changeView('generator', '#df1f1d')}
+                label={<span style={{ color: '#df1f1d' }}>Generator</span>}></Tab>
+            <Tab disabled={true} style={{display: 'none'}}></Tab>
+
+        </Tabs>
     )
 }
 
-export default Navbar;
+class NavBar extends React.Component {
+    constructor(){
+        super();
+        this.state = {
+            view : 'landing',
+            showIndicator: 'none'
+        };
+    }
+
+    changeView = (viewName, indicatorFlag) => {
+        this.setState({view: viewName});
+        this.setState({showIndicator: indicatorFlag});
+    }
+
+    render(){
+        return (
+            <div>
+                <AppBar position='static' color='inherit'>
+                    <Grid
+                        container
+                        direction="row"
+                        justify="space-between"
+                        alignItems="baseline"
+                    >
+                        <Grid item>
+                            <Toolbar onClick={() => this.changeView('landing', 'none')}><img src={logo} alt='logo'/></Toolbar>
+                        </Grid>
+                        <Grid item>
+                            <SimpleTabs changeView={this.changeView} showIndicator={this.state.showIndicator}/>
+                        </Grid>
+
+                    </Grid>
+                </AppBar>
+                {shouldRender(this.state.view)}
+            </div>
+        )
+        
+    }
+}
+
+
+export default NavBar;
