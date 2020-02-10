@@ -59,9 +59,16 @@ h4.MuiTypography-h4 {
   font-weight: bold;
 }
 
+.MuiTypography-h6 {
+  max-width: 344px;
+}
+
 p.MuiTypography-body1 {
   color: #8c8c8c;
   white-space: pre;
+}
+
+.text-content>p.MuiTypography-body1 {
   margin-bottom: 40px;
 }
 
@@ -153,6 +160,39 @@ img {
   color: #f9faf7;
 }
 
+.dropdown.MuiButtonBase-root {
+  width: 240px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.option-item {
+  text-transform: none;
+}
+
+.recipe-card {
+  display: flex;
+  background: #ebede6;
+  width: 100%;
+}
+
+.number-box {
+  width: 64px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ingredients {
+  margin: 15px 0px;
+  text-transform: capitalize;
+}
+
+.MuiGridList-root {
+  width: 100%;
+}
+
 @media only screen and (min-width: 600px) {
   .doodle {
     flex: 1;
@@ -170,7 +210,7 @@ img {
     width: auto;
   }
 
-  .MuiButton-root.smoothie-button {
+  .MuiButton-root.smoothie-button, .recipe-card {
     width: 344px;
   }
 }

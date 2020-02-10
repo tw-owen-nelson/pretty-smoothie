@@ -1,12 +1,12 @@
 package com.team68.PrettySmoothie.controller;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.containsInAnyOrder;
-
+import com.team68.PrettySmoothie.model.Fruit;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collection;
-import com.team68.PrettySmoothie.model.Fruit;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 
 public class FruitControllerTests {
     private FruitController fruitController = new FruitController();
