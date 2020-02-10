@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, wait, waitForElement, fireEvent } from '@testing-library/react';
+import { render, waitForElement, fireEvent } from '@testing-library/react';
 import Predictor from '../components/Predictor';
 
 const mockData = [
@@ -153,3 +153,4 @@ describe('when a smoothie is shown', () => {
     expect(selectedBorders.length).toBe(0);
   });
 });
+

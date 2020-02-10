@@ -1,7 +1,6 @@
 import React from 'react';
 import { Typography, GridList, GridListTile, Button } from '@material-ui/core';
-import jumpImage from '../images/jumpImage.svg';
-import swingImage from '../images/swingImage.svg'
+import Doodle from './Doodle.js';
 import selectedBorder from '../images/selected.svg';
 import hover from '../images/hover.svg';
 import Smoothie from './SmoothieFactory.js'
@@ -84,9 +83,7 @@ class Predictor extends React.Component {
         <div className='text-content'>
           {content}
         </div>
-        <div className='doodle'>
-          <img src={smoothieIsShown ? swingImage : jumpImage} alt='startup website doodle' />
-        </div>
+        <Doodle stage={smoothieIsShown} />
       </div>
     );
   }
