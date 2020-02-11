@@ -20,9 +20,9 @@ class Generator extends React.Component {
       .then(data => this.setState({ colors: data }));
   }
 
-  selectColorIndex = (index) => {
+  selectColorByIndex = index => {
     this.setState({ selectedColorIndex: index, errorIsShown: false });
-  };
+  }
 
   showRecipes = () => {
     const color = this.state.colors[this.state.selectedColorIndex - 1].color.substring(1);
@@ -66,7 +66,7 @@ class Generator extends React.Component {
         <SelectMenu
           colors={this.state.colors}
           selectedIndex={selectedColorIndex}
-          selectIndex={this.selectColorIndex}
+          selectColorByIndex={this.selectColorByIndex}
         />
         <Button className={buttonClass} onClick={recipeButtonFunction}>SHOW ME HOW TO MAKE IT</Button>
         <Typography variant='caption'>{errorMessage}</Typography>
@@ -100,39 +100,39 @@ function Messages(props) {
 function SelectMenu(props) {
   const colors = props.colors;
   const selectedIndex = props.selectedIndex;
-  const selectIndex = props.selectIndex;
-  const [selectedElement, selectElement] = React.useState(null);
+  const selectColorByIndex = props.selectColorByIndex;
+  const [anchorElement, anchorOnElement] = React.useState(null);
 
   const triangle = (
-    <svg width="16" height="8" viewBox="0 0 16 8">
+    <svg width='16' height='8' viewBox='0 0 16 8'>
       <path
-        transform={Boolean(selectedElement) ? 'rotate(180,8,4)' : ''}
-        fill="#EC6356"
-        fillRule="evenodd"
-        d="M8 8L0 0h16z"
+        transform={Boolean(anchorElement) ? 'rotate(180,8,4)' : ''}
+        fill='#EC6356'
+        fillRule='evenodd'
+        d='M8 8L0 0h16z'
       />
     </svg>
   );
 
   const colorBox = (color) => {
     return (
-      <svg width="25" height="25" viewBox="0 0 25 25">
-        <rect width="25" height="25" fill={color} fillRule="evenodd" rx="1"/>
+      <svg width='25' height='25' viewBox='0 0 25 25'>
+        <rect width='25' height='25' fill={color} fillRule='evenodd' rx='1'/>
       </svg>
     );
   }
 
   const handleOpen = event => {
-    selectElement(event.currentTarget);
+    anchorOnElement(event.currentTarget);
   }
 
   const handleClick = (event, index) => {
-    selectIndex(index);
-    selectElement(null);
+    selectColorByIndex(index);
+    anchorOnElement(null);
   }
 
   const handleClose = () => {
-    selectElement(null);
+    anchorOnElement(null);
   }
 
   const optionItem = (name, symbol) => {
@@ -160,8 +160,8 @@ function SelectMenu(props) {
       <Typography variant='h6'>What color do you want your smoothie to be?</Typography>
       <Button className='dropdown' variant='outlined' onClick={handleOpen}>{options[selectedIndex]}</Button>
       <Menu
-        anchorEl={selectedElement}
-        open={Boolean(selectedElement)}
+        anchorEl={anchorElement}
+        open={Boolean(anchorElement)}
         onClose={handleClose}
       >
         {menuItems}

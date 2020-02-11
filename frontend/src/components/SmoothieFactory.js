@@ -4,7 +4,7 @@ function Smoothie(props) {
   return (
     <div className='smoothie-image'>
       <svg className='cup-top' width='178' height='260' viewBox='0 0 178 260'>
-        <ellipse cx="89" cy="18" fill="#F9FAF7" fillRule='evenodd' stroke='#EC6356' rx="88.5" ry="17.5"/>
+        <ellipse cx='89' cy='18' fill='#F9FAF7' fillRule='evenodd' stroke='#EC6356' rx='88.5' ry='17.5'/>
       </svg>
       <svg className='smoothie-base' width='152' height='168' viewBox='0 0 152 168'>
         <title>smoothie</title>

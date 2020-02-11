@@ -3,8 +3,8 @@ import { render, waitForElement, fireEvent } from '@testing-library/react';
 import Generator from '../components/Generator';
 
 const mockColorData = [
-  {"name":"yellow","color":"#FDE8AE"},
-  {"name":"purple", "color":"#5F3A81"}
+  {'name':'yellow','color':'#FDE8AE'},
+  {'name':'purple', 'color':'#5F3A81'}
 ];
 
 const mockColorResponse = Promise.resolve(mockColorData);
@@ -14,7 +14,7 @@ const mockColorFetch = Promise.resolve({
 global.fetch = jest.fn().mockImplementation(() => mockColorFetch);
 
 const mockRecipeData = [
-  {"ingredients": {"bananas":"8oz","strawberries":'2oz'}}
+  {'ingredients': {'bananas':'8oz','strawberries':'2oz'}}
 ];
 const mockRecipeResponse = Promise.resolve(mockRecipeData);
 const mockRecipeFetch = Promise.resolve({

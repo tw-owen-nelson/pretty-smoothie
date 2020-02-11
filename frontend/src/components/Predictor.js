@@ -3,7 +3,7 @@ import { Typography, GridList, GridListTile, Button } from '@material-ui/core';
 import Doodle from './Doodle.js';
 import selectedBorder from '../images/selected.svg';
 import hover from '../images/hover.svg';
-import Smoothie from './SmoothieFactory.js'
+import Smoothie from './SmoothieFactory.js';
 
 class Predictor extends React.Component {
   constructor(props) {
@@ -23,7 +23,7 @@ class Predictor extends React.Component {
       .then(data => this.setState({ fruits: data }));
   }
 
-  onIconClick = ((index) => {
+  onIconClick = (index) => {
     if (index === this.state.selectedFruit) {
       this.setState({
         ingredientSelected: false,
@@ -36,7 +36,7 @@ class Predictor extends React.Component {
       });
     }
     this.setState({ errorIsShown: false });
-  });
+  }
 
   generateSmoothie = () => {
     this.setState({ smoothieIsShown: true });
@@ -78,6 +78,7 @@ class Predictor extends React.Component {
         <Typography variant='caption'>{errorMessage}</Typography>
       </>
     );
+
     return (
       <div className='side-by-side'>
         <div className='text-content'>
@@ -109,9 +110,10 @@ function IngredientSelector(props) {
   const tiles = props.fruits.map((fruit, index) => {
     return (
       <GridListTile style={styles} key={index}>
-        <IngredientButton fruit={fruit}
-                          onClick={() => props.onClick(index)}
-                          isSelected={index === props.selectedFruit} />
+        <IngredientButton
+          fruit={fruit}
+          onClick={() => props.onClick(index)}
+          isSelected={index === props.selectedFruit} />
       </GridListTile>
     );
   });
