@@ -138,7 +138,9 @@ function SelectMenu(props) {
   const optionItem = (name, symbol) => {
     return (
       <>
-        <Typography className='option-item' variant='caption'>{name}</Typography>
+        <Typography className={name === 'Select Color' ? 'select-color' : 'option-item'} variant='caption'>
+          {name}
+        </Typography>
         {symbol}
       </>
     );

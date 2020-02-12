@@ -166,8 +166,13 @@ img {
   justify-content: space-between;
 }
 
+.select-color {
+  text-transform: capitalize;
+  opacity: 0.5;
+}
+
 .option-item {
-  text-transform: none;
+  text-transform: capitalize;
 }
 
 .recipe-card {

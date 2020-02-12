@@ -31,9 +31,9 @@ public class FruitController {
     @GetMapping("/colors")
     Collection<Color> getColors() {
         Collection<Color> colors = new ArrayList<>();
-        colors.add(new Color("Yellow", "#FDE8AE"));
-        colors.add(new Color("Purple", "#5F3A81"));
-        colors.add(new Color("Pink", "#E76F77"));
+        colors.add(new Color("yellow", "#FDE8AE"));
+        colors.add(new Color("purple", "#5F3A81"));
+        colors.add(new Color("pink", "#E76F77"));
         return colors;
     }
 
