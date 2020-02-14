@@ -1,3 +1,7 @@
+body {
+  margin: 0;
+}
+
 .App {
   text-align: center;
   background: #f9faf7;
@@ -8,6 +12,7 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+  margin-bottom: 100px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
