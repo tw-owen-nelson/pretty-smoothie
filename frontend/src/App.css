@@ -119,20 +119,21 @@ img {
 .smoothie-shading {
   position: absolute;
   z-index: 3;
-  left: 17px;
-  bottom: 7px;
+  left: 21px;
+  bottom: 10px;
 }
 
 .smoothie-base {
   position: absolute;
   z-index: 2;
   left: 13px;
-  bottom: 7px;
+  bottom: 10px;
 }
 
 .smoothie-image {
   position: relative;
   left: 31px;
+  bottom: 0;
   margin-top: 12px;
   margin-bottom: 14px;
 }
