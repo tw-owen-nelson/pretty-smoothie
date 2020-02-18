@@ -11,6 +11,7 @@ class Predictor extends React.Component {
     this.state = {
       ingredientSelected: false,
       selectedFruit: null,
+      multiSelectedFruits: [], 
       errorIsShown: false,
       smoothieIsShown: false,
       fruits: []
@@ -27,12 +28,14 @@ class Predictor extends React.Component {
     if (index === this.state.selectedFruit) {
       this.setState({
         ingredientSelected: false,
-        selectedFruit: null
+        selectedFruit: null,
+        multiSelectedFruits: this.state.multiSelectedFruits.filter(unselect => unselect != index)
       });
     } else {
       this.setState({
         ingredientSelected: true,
-        selectedFruit: index
+        selectedFruit: index,
+        multiSelectedFruits: [...this.state.multiSelectedFruits, index]
       });
     }
     this.setState({ errorIsShown: false });
@@ -50,6 +53,7 @@ class Predictor extends React.Component {
     this.setState({
       ingredientSelected: false,
       selectedFruit: null,
+      multiSelectedFruits: [],
       smoothieIsShown: false
     });
   }
@@ -57,6 +61,7 @@ class Predictor extends React.Component {
   render() {
     const fruits = this.state.fruits;
     const selectedFruit = this.state.selectedFruit;
+    const multiSelectedFruits = this.state.multiSelectedFruits;
     const ingredientIsSelected = this.state.ingredientSelected;
     const smoothieIsShown = this.state.smoothieIsShown;
 
@@ -73,7 +78,7 @@ class Predictor extends React.Component {
     ) : (
       <>
         <Messages smoothieIsShown={false} />
-        <IngredientSelector fruits={fruits} onClick={this.onIconClick} selectedFruit={selectedFruit} />
+        <IngredientSelector fruits={fruits} onClick={this.onIconClick} selectedFruit={selectedFruit} multiSelectedFruits={multiSelectedFruits} />
         <Button className={buttonClass} onClick={smoothieButtonFunction}>SHOW ME MY SMOOTHIE</Button>
         <Typography variant='caption'>{errorMessage}</Typography>
       </>
@@ -110,7 +115,9 @@ function IngredientSelector(props) {
         <IngredientButton
           fruit={fruit}
           onClick={() => props.onClick(index)}
-          isSelected={index === props.selectedFruit} />
+          isSelected={index === props.selectedFruit} 
+          index={index}
+          multiSelectedFruits={props.multiSelectedFruits}/>
       </GridListTile>
     );
   });
@@ -129,9 +136,10 @@ function IngredientButton(props) {
   const name = props.fruit.name;
   const imageURL = props.fruit.imageURL;
   const isSelected = props.isSelected;
+  const multiSelectedFruits = props.multiSelectedFruits;
   const border = isSelected ?
     <img src={selectedBorder} className='selected-border' alt='selected' onClick={props.onClick} /> : <></>;
-
+    // console.log(multiSelectedFruits);;
   return (
     <>
       {border}
