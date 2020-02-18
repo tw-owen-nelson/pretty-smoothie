@@ -104,12 +104,9 @@ function Messages(props) {
 }
 
 function IngredientSelector(props) {
-  const styles = {
-    'width': 'auto'
-  };
   const tiles = props.fruits.map((fruit, index) => {
     return (
-      <GridListTile style={styles} key={index}>
+      <GridListTile key={index} cols={1}>
         <IngredientButton
           fruit={fruit}
           onClick={() => props.onClick(index)}
@@ -121,7 +118,7 @@ function IngredientSelector(props) {
   return (
     <>
       <Typography variant='h6'>What's going in?</Typography>
-      <GridList cols={4} cellHeight='auto' spacing={16}>
+      <GridList cols={4} cellHeight={69} spacing={16} className='ingredient-selector'>
         {tiles}
       </GridList>
     </>

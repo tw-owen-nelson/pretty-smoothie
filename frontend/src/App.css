@@ -93,6 +93,10 @@ img {
   flex: 1;
 }
 
+.MuiGridList-root.ingredient-selector {
+  max-width: 344px;
+}
+
 .selected-border {
   position: absolute;
   z-index: 2;
