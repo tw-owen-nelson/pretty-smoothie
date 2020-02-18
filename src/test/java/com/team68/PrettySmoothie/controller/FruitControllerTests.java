@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Collection;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.hamcrest.Matchers.hasItems;
 
 public class FruitControllerTests {
     private FruitController fruitController = new FruitController(new FruitRepository(), new RecipeService());
@@ -19,6 +19,6 @@ public class FruitControllerTests {
     @Test
     void shouldReturnBasicFruits() {
         Collection<Fruit> fruits = fruitController.getFruits();
-        assertThat(fruits, containsInAnyOrder(banana, blueberry, strawberry));
+        assertThat(fruits, hasItems(banana, blueberry, strawberry));
     }
 }
