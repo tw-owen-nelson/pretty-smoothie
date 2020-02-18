@@ -64,15 +64,17 @@ describe('when you click on a fruit icon', () => {
     expect(smoothieButton).toBeEnabled();
   });
 
-  it('selected border moves to next fruit icon clicked and button remains enabled', async () => {
-    const { getByAltText, getByText } = render(<Predictor />);
+  it('original selected border remains when another fruit icon clicked is and button remains enabled', async () => {
+    const { getByAltText, getByText, getAllByAltText } = render(<Predictor />);
     const fruitIcon1 = await waitForElement(() => getByAltText('banana icon'));
     const fruitIcon2 = await waitForElement(() => getByAltText('blueberry icon'));
     fireEvent.click(fruitIcon1);
     fireEvent.click(fruitIcon2);
-    const selectedBorder = await waitForElement(() => getByAltText('selected'));
-    expect(selectedBorder.parentNode).toContainElement(fruitIcon2);
-    expect(selectedBorder.parentNode).not.toContainElement(fruitIcon1);
+    const selectedBorder = await waitForElement(() => getAllByAltText('selected'));
+    console.log('selected ' + selectedBorder);
+    console.log('fruitIcon ' + fruitIcon1)
+    expect(selectedBorder[0].parentNode).toContainElement(fruitIcon1);
+    expect(selectedBorder[1].parentNode).toContainElement(fruitIcon2);
     const smoothieButton = getByText("SHOW ME MY SMOOTHIE");
     expect(smoothieButton).toBeEnabled();
   });
