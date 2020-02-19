@@ -25,11 +25,11 @@ class Predictor extends React.Component {
   }
 
   onIconClick = (index) => {
-    if (index === this.state.selectedFruit) {
+    if (this.state.multiSelectedFruits.includes(index)) {
       this.setState({
         ingredientSelected: false,
         selectedFruit: null,
-        multiSelectedFruits: this.state.multiSelectedFruits.filter(unselect => unselect != index)
+        multiSelectedFruits: this.state.multiSelectedFruits.filter(unselect => unselect !== index)
       });
     } else {
       this.setState({
@@ -65,9 +65,9 @@ class Predictor extends React.Component {
     const ingredientIsSelected = this.state.ingredientSelected;
     const smoothieIsShown = this.state.smoothieIsShown;
 
-    const smoothieButtonFunction = ingredientIsSelected ? this.generateSmoothie : this.showError;
+    const smoothieButtonFunction = multiSelectedFruits.length > 0 ? this.generateSmoothie : this.showError;
     const errorMessage = this.state.errorIsShown ? 'Please select your ingredient!' : '';
-    const buttonClass = 'smoothie-button' + (ingredientIsSelected ? '' : ' disabled');
+    const buttonClass = 'smoothie-button' + (multiSelectedFruits.length > 0 ? '' : ' disabled');
 
     const content = smoothieIsShown ? (
       <>
@@ -137,13 +137,12 @@ function IngredientButton(props) {
   const imageURL = props.fruit.imageURL;
   const isSelected = props.isSelected;
   const multiSelectedFruits = props.multiSelectedFruits;
-  const n = multiSelectedFruits.includes(props.index);
+  const isFruit = multiSelectedFruits.includes(props.index);
 
-  const border = n ?
+  const border = isFruit ?
     <img src={selectedBorder} className='selected-border' alt='selected' onClick={props.onClick} /> : <></>;
   
-  console.log(multiSelectedFruits);
-  return (
+    return (
     <>
       {border}
       <img src={hover} className='hover-overlay' alt='hover' onClick={props.onClick} />
