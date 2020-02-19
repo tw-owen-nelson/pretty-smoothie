@@ -15,11 +15,11 @@ public class FruitRepository {
         fruits.add(new Fruit("banana", "/media/banana.png", "#FDE8AE"));
         fruits.add(new Fruit("blueberry", "/media/blueberry.png", "#5F3A81"));
         fruits.add(new Fruit("strawberry", "/media/strawberry.png", "#E76F77"));
-        fruits.add(new Fruit("apple", "/media/apple.png", "#F4EEDA"));
+        fruits.add(new Fruit("apple", "/media/apple.png", "#CBA56E"));
         fruits.add(new Fruit("carrot", "/media/carrot.png", "#F38A2D"));
         fruits.add(new Fruit("mango", "/media/mango.png", "#FFBC39"));
         fruits.add(new Fruit("orange", "/media/orange.png", "#FF9F00"));
-        fruits.add(new Fruit("pineapple", "/media/pineapple.png", "#FFE33B"));
+        fruits.add(new Fruit("pineapple", "/media/pineapple.png", "#FFF08E"));
     }
 
     public Collection<Fruit> getAllFruit() {
