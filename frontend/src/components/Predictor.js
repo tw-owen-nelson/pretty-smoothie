@@ -138,7 +138,7 @@ function IngredientButton(props) {
   const isSelected = props.isSelected;
   const multiSelectedFruits = props.multiSelectedFruits;
   const isFruit = multiSelectedFruits.includes(props.index);
-
+  
   const border = isFruit ?
     <img src={selectedBorder} className='selected-border' alt='selected' onClick={props.onClick} /> : <></>;
   
