@@ -79,6 +79,7 @@ class Predictor extends React.Component {
       <>
         <Messages smoothieIsShown={false} />
         <IngredientSelector fruits={fruits} onClick={this.onIconClick} selectedFruit={selectedFruit} multiSelectedFruits={multiSelectedFruits} />
+        <IngredientQuantity fruits={fruits} multiSelectedFruits={multiSelectedFruits} />
         <Button className={buttonClass} onClick={smoothieButtonFunction}>SHOW ME MY SMOOTHIE</Button>
         <Typography variant='caption'>{errorMessage}</Typography>
       </>
@@ -138,7 +139,7 @@ function IngredientButton(props) {
   const isSelected = props.isSelected;
   const multiSelectedFruits = props.multiSelectedFruits;
   const isFruit = multiSelectedFruits.includes(props.index);
-  
+
   const border = isFruit ?
     <img src={selectedBorder} className='selected-border' alt='selected' onClick={props.onClick} /> : <></>;
   
@@ -149,6 +150,31 @@ function IngredientButton(props) {
       <img src={imageURL} alt={name + ' icon'} onClick={props.onClick} />
     </>
   );
+}
+
+function IngredientQuantity(props) {
+  const selectedIndexes = props.multiSelectedFruits;
+  const Fruits = props.fruits.map(fruit => fruit);
+  const selectedFruits = [];
+  
+  for (let a = 0; a < selectedIndexes.length; a++) {
+    const woo = selectedIndexes[a];
+    selectedFruits.push(Fruits[woo]);
+  }
+
+  const vibes = selectedFruits.map((fruit) => {
+    return (
+      <Typography variant='h6'>{fruit.name}</Typography>
+
+    )
+  })
+
+  return (
+    <>
+      <Typography variant='h6'>How much of each?</Typography>
+      {vibes}
+    </>
+  )
 }
 
 export default Predictor;
