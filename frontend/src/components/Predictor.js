@@ -28,7 +28,7 @@ class Predictor extends React.Component {
     if (this.state.multiSelectedFruits.includes(index)) {
       this.setState({
         ingredientSelected: false,
-        selectedFruit: null,
+        selectedFruit: this.state.multiSelectedFruits.length > 0 ? (this.state.multiSelectedFruits[this.state.multiSelectedFruits.length - 1]) : null ,
         multiSelectedFruits: this.state.multiSelectedFruits.filter(unselect => unselect !== index)
       });
     } else {
