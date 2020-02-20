@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, GridList, GridListTile, Button } from '@material-ui/core';
+import { Typography, GridList, GridListTile, Button, TextField } from '@material-ui/core';
 import Doodle from './Doodle.js';
 import selectedBorder from '../images/selected.svg';
 import hover from '../images/hover.svg';
@@ -162,17 +162,26 @@ function IngredientQuantity(props) {
     selectedFruits.push(Fruits[woo]);
   }
 
-  const vibes = selectedFruits.map((fruit) => {
-    return (
-      <Typography variant='h6'>{fruit.name}</Typography>
 
+  // make new pretty smoothie object? with name and oz?
+  const howMuch = selectedFruits.map((fruit) => {
+    return (
+      <div>
+          <TextField
+          error
+          id="outlined-error"
+          defaultValue="8"
+          variant="outlined"
+        />
+        <Typography variant='h6'>{fruit.name}</Typography>
+      </div>
     )
   })
 
   return (
     <>
       <Typography variant='h6'>How much of each?</Typography>
-      {vibes}
+      {howMuch}
     </>
   )
 }
