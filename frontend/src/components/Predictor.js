@@ -188,6 +188,7 @@ function IngredientQuantity(props) {
 
   // make new pretty smoothie object? with name and oz?
   const howMuch = selectedFruits.map((fruit) => {
+    const name = fruit.name.charAt(0).toUpperCase() + fruit.name.slice(1);
     return (
       <div>
         <Grid container spacing={3} className={classes.mike}>
@@ -198,7 +199,7 @@ function IngredientQuantity(props) {
         <Typography variant='h6'>Oz.</Typography>
         </Grid>
         <Grid item>
-        <Typography variant='h6'>{fruit.name}</Typography>
+        <Typography variant='h6'>{name}</Typography>
         </Grid>
         </Grid>
       </div>
