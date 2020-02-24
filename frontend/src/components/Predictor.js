@@ -1,9 +1,30 @@
 import React from 'react';
-import { Typography, GridList, GridListTile, Button, TextField } from '@material-ui/core';
+import { Typography, GridList, GridListTile, Button, TextField, Grid, makeStyles } from '@material-ui/core';
 import Doodle from './Doodle.js';
 import selectedBorder from '../images/selected.svg';
 import hover from '../images/hover.svg';
 import Smoothie from './SmoothieFactory.js';
+
+const useStyles = makeStyles({
+  mike: {
+    padding: '10px 0px 10px 0px',
+  },
+  nut: {
+    width: '4.0em',
+    height: '2.750em',
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'red',
+      },
+      '&:hover fieldset': {
+        borderColor: 'red',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: 'red',
+      },
+    },
+  }
+});
 
 class Predictor extends React.Component {
   constructor(props) {
@@ -156,7 +177,9 @@ function IngredientQuantity(props) {
   const selectedIndexes = props.multiSelectedFruits;
   const Fruits = props.fruits.map(fruit => fruit);
   const selectedFruits = [];
-  
+  const classes = useStyles();
+
+
   for (let a = 0; a < selectedIndexes.length; a++) {
     const woo = selectedIndexes[a];
     selectedFruits.push(Fruits[woo]);
@@ -167,13 +190,17 @@ function IngredientQuantity(props) {
   const howMuch = selectedFruits.map((fruit) => {
     return (
       <div>
-          <TextField
-          error
-          id="outlined-error"
-          defaultValue="8"
-          variant="outlined"
-        />
+        <Grid container spacing={3} className={classes.mike}>
+        <Grid item>
+        <TextField variant='outlined' className={classes.nut}/>
+        </Grid>
+        <Grid item>
+        <Typography variant='h6'>Oz.</Typography>
+        </Grid>
+        <Grid item>
         <Typography variant='h6'>{fruit.name}</Typography>
+        </Grid>
+        </Grid>
       </div>
     )
   })
